@@ -8,7 +8,7 @@ var mysql = require('mysql2')
 
 // Create the express application object
 const app = express()
-const port = 8000
+const port = 8001
 const expressSanitizer = require('express-sanitizer');
 
 const apiKey = process.env.DEEPSEEK_API_KEY;

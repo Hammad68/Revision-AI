@@ -1,0 +1,6 @@
+peace tweets - [happy , education ….]
+conflict tweets - [sanction, terrisom ...]
+
+User name	Tweet		machine-label		human label	topics  cafvalue 
+123		games any	peace (0)		conflict (1)
+1433		terrorism any	conflict (1)		conflict (1)		70

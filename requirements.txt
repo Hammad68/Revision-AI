@@ -1,0 +1,11 @@
+# FastApi itself
+fastapi>=0.115.0
+
+# For running fastapi webserver
+uvicorn[standard]>=0.30.0
+
+# For handling user uploaded files
+python-multipart>=0.0.9
+
+# For processing documents
+docling>=2.0.0
