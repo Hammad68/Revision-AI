@@ -77,13 +77,15 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     // const txt = await response.text();
     // const data = JSON.parse(txt);
 
-    const data = await response['fileMarkdown'].json();
+    const orgResponse = await response.json();
 
-    const chunks = await response['chunks'].json();
+    const data = orgResponse.fileMarkdown;
+
+    const chunks = orgResponse.chunks;
 
     console.log(data, chunks);
 
-    res.render('about', {ok: true, fileMarkdown: data.fileMarkdown, fileName: data.fileName, chunks: chunks});
+    res.render('about', {ok: true, fileMarkdown: data, fileName: orgResponse.fileName, chunks: chunks});
     //    const fileName = String(req.file.filename);
 
     await fs.unlink(req.file.path);

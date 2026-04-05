@@ -8,13 +8,23 @@ def convert_document(file_content: bytes, filename: str) -> str:
     
     from docling.document_converter import DocumentConverter
 
-    from docling.chunking.chunker import HybridChunker
-
     
     buf = BytesIO(file_content)
     source = DocumentStream(name=filename or "upload.bin", stream=buf)
-    chunker = HybridChunker()
-    chunks = chunker.chunk(source)
     converter = DocumentConverter()
-    result = converter.convert(source)
-    return result.document.export_to_markdown(), chunks
+    generating_result = converter.convert(source)
+    dockling_doc = generating_result.document
+    markdown = generating_result.document.export_to_markdown()
+    return markdown, dockling_doc
+
+
+def get_chunks(file_obj) -> list[str]:
+    """Get chunks from uploaded file bytes."""
+
+    from docling.chunking import HybridChunker
+
+    chunker = HybridChunker()
+
+    chunks = list(chunker.chunk(file_obj))
+
+    return chunks

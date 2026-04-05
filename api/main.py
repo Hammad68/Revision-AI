@@ -1,6 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 
-from api.processing import convert_document
+from api.processing import convert_document, get_chunks
 
 app = FastAPI()
 
@@ -11,8 +11,10 @@ def read_root():
 @app.post("/file-processing")
 async def file_processing(file: UploadFile = File(...)):
     data = await file.read()
-    markdown = convert_document(data, file.filename or "upload.bin")[0]
-    chunks = convert_document(data, file.filename or "upload.bin")[1]
+    markdown, dockling_doc = convert_document(data, file.filename or "upload.bin")
+    chunks = get_chunks(dockling_doc)
+    print(markdown)
+    print(chunks)
     return {
         "message": "File Processed",
         "fileName": file.filename,
