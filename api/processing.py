@@ -1,30 +1,55 @@
 
 
+converter = None
+chunker = None
+
+
 def convert_document(file_content: bytes, filename: str) -> str:
     """Convert uploaded file bytes to Markdown. Filename is used for format detection."""
+    
+    global converter
+
+    global chunker
+    
     from io import BytesIO
 
     from docling.datamodel.base_models import DocumentStream
     
     from docling.document_converter import DocumentConverter
 
+    from docling.chunking import HybridChunker
+
     
     buf = BytesIO(file_content)
     source = DocumentStream(name=filename or "upload.bin", stream=buf)
-    converter = DocumentConverter()
+    
+    if converter is None:
+        converter = DocumentConverter()
+    
     generating_result = converter.convert(source)
     dockling_doc = generating_result.document
     markdown = generating_result.document.export_to_markdown()
-    return markdown, dockling_doc
+
+    if chunker is None:
+        chunker = HybridChunker()
+
+    chunks = list(chunker.chunk(generating_result.document))
+
+    del generating_result
+    
+    return markdown, chunks
 
 
-def get_chunks(file_obj) -> list[str]:
-    """Get chunks from uploaded file bytes."""
+# def get_chunks(file_obj) -> list[str]:
+#     """Get chunks from uploaded file bytes."""
 
-    from docling.chunking import HybridChunker
+#     global chunker
 
-    chunker = HybridChunker()
+#     from docling.chunking import HybridChunker
 
-    chunks = list(chunker.chunk(file_obj))
+#     if chunker is None:
+#         chunker = HybridChunker()
 
-    return chunks
+#     chunks = list(chunker.chunk(file_obj))
+
+#     return chunks

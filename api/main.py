@@ -1,6 +1,8 @@
 from fastapi import FastAPI, File, UploadFile
 
-from api.processing import convert_document, get_chunks
+from fastapi.concurrency import run_in_threadpool
+
+from api.processing import convert_document
 
 app = FastAPI()
 
@@ -11,10 +13,7 @@ def read_root():
 @app.post("/file-processing")
 async def file_processing(file: UploadFile = File(...)):
     data = await file.read()
-    markdown, dockling_doc = convert_document(data, file.filename or "upload.bin")
-    chunks = get_chunks(dockling_doc)
-    print(markdown)
-    print(chunks)
+    markdown, chunks = await run_in_threadpool(convert_document, data, file.filename or "upload.bin")
     return {
         "message": "File Processed",
         "fileName": file.filename,
