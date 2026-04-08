@@ -3,13 +3,21 @@
   <head>
     <title>About US</title>
     <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
   </head>
   <body>
     <h1>Extract Information from PDF</h1>
     <p>Document Name: <%= fileName %></p>
-    <p>Document Markdown: <%- fileMarkdown %></p>
-    <ol>
-        <li><%= chunks %></li>
-    </ol>
+    <h2>Extracted Information</h2>
+    <div class="markdown-body">
+      <%- fileMarkdown %>
+    </div>
+    <h2>Chunks</h2>
+    <ul>
+      <% chunks.forEach(function(chunk) { %>
+        <li><%= chunk.text %></li>
+        <br>
+      <% }); %>
+    </ul>
   </body>
 </html>

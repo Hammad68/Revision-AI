@@ -2,6 +2,9 @@
 const fs = require("fs/promises"); // For standard stream
 const fsPromise = require("fs").promises // For asyn file operations
 
+
+const marked = require("marked"); // For markdown parsing
+
 // const FormData = require("form-Data");
 // const fetch = require("node-fetch");
 
@@ -81,11 +84,13 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
 
     const data = orgResponse.fileMarkdown;
 
+    const htmlData = marked.parse(data);
+
     const chunks = orgResponse.chunks;
 
     console.log(data, chunks);
 
-    res.render('about', {ok: true, fileMarkdown: data, fileName: orgResponse.fileName, chunks: chunks});
+    res.render('about', {ok: true, fileMarkdown: htmlData, fileName: orgResponse.fileName, chunks: chunks});
     //    const fileName = String(req.file.filename);
 
     await fs.unlink(req.file.path);
