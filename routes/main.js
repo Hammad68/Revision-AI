@@ -120,6 +120,30 @@ router.get('/processed', async function(req, res, next){
 
 });
 
+router.get('/api/status/:id', async function(req, res, next){
+    try{       
+        const jobId = req.params.id;
+            
+        const response = await fetch(`http://127.0.0.1:8000/job-status/${jobId}`);
+        const data = await response.json();
+        
+        res.json(data);
+
+    } catch (error) { 
+        console.error("Error fetching job status:", error);
+        res.status(500).json({ success: false, error: "Failed to fetch job status" });
+    }       
+});
+
+router.get('/results', async function(req, res, next){
+    const jobId = req.query.jobId;
+
+    const response = await fetch(`http://127.0.0.1:8000/api/job-status/${jobId}`);
+    const data = await response.json();
+
+    res.json(data);
+});
+
 router.get('/about', function (req, res, next) {
     const preview = req.session.documentPreview || {};
     res.render('about.ejs', {

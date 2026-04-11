@@ -10,5 +10,48 @@
     <p>Document Name: <%= fileName %></p>
     <h2>Processing Information</h2>
     <p>Processing Job ID: <%= job_Id %></p>
+    <div id="processed-info-message">
+      <p>Your document is being processed. Please check back later for the results.</p>
+    </div>
   </body>
+  <script>
+    // Optional: You can add JavaScript here to periodically check the status of the processing job and update the page accordingly.
+    const jobId = "<%= job_Id %>";
+    const fileStatusMessage = document.getElementById('processed-info-message');
+
+    // Example: Polling the server for job status every 10 seconds
+    const checkStatus = async () => {
+      try {
+        const response = await fetch(`/api/status/${jobId}`);
+        const data = await response.json(); 
+        
+        console.log("Current API Response:", data);
+
+        if (data.status === 'SUCCESS') {
+          clearInterval(pollingInterval); // Stop polling if the job is completed
+          // If the job is completed, you can redirect to a results page or update the current page with the results.
+          fileStatusMessage.innerHTML = '<p>Your document has been processed successfully! Redirecting to results...</p>';
+          window.location.href = `/results?jobId=${jobId}`;
+        }
+        else if (data.status === 'FAILED') {
+          clearInterval(pollingInterval); // Stop polling if the job has failed
+          fileStatusMessage.innerHTML = '<p>There was an error processing your document. Please try again.</p>';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 5000); // Redirect after 5 seconds   
+        }
+        else {
+          fileStatusMessage.innerHTML = `<p>Processing... Current status: ${data.status}</p>`;
+        }
+      } catch (error) {
+        console.error('Error checking job status:', error);
+      }
+    }; // Check every 10 seconds
+    
+    const pollingInterval = setInterval(checkStatus, 2000);
+
+    checkStatus(); // Initial check immediately after page load  
+
+  </script>
+
 </html>
