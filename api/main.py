@@ -17,7 +17,7 @@ async def file_processing(file: UploadFile = File(...)):
     content = await file.read()  # Read the file content as bytes
     task = celery_instance.send_task("process_file", args=[file.filename, content])
 
-    return {"message": "File received, processing started", "job_id": task.id}
+    return {"message": "File received, processing started", "job_id": task.id, "fileName": filename}
 
 
 @app.get("/job-status/{job_id}")

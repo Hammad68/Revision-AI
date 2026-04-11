@@ -3,204 +3,149 @@
   <head>
     <title>Revision AI</title>
     <link href="/css/output.css" rel="stylesheet">
-    <!-- <link rel="stylesheet"  type="text/css" href="/main.css" /> -->
   </head>
 
-<body class="bg-gray-900">
-    
+  <body class="bg-gray-900 text-white">
 
-   
-<nav class="relative m-auto bg-indigo-500/60 backdrop-blur-md border-b border-white/10">
-  <div class="m-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
+    <!-- NAVBAR -->
+    <nav class="bg-indigo-500/60 backdrop-blur-md border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex h-16 items-center justify-between">
 
-       <!-- Mobile menu button -->
-      <div class="relative inset-y-0 left-0 flex items-center sm:hidden">
-        <button
-          id="mobile-menu-button"
-          class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open main menu</span>
-          ☰
-        </button>
-      </div>
-
-      <!-- Logo + desktop links -->
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="flex shrink-0 items-center">
-          <img
-            class="h-8 w-auto"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-            alt="Logo"
-          />
-        </div>
-
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <a class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
-            <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Team</a>
-            <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Projects</a>
-            <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right actions -->
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-        <!-- Notification button -->
-        <button id="notifications-button" class="rounded-full p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <span class="sr-only">View notifications</span>
-          <img src="upload.png">
-        </button>
-
-        <!-- Dropdown menu -->
-        <div
-            id="notifications-menu"
-            class="hidden absolute right-0 z-12 mt-18 w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-black/20"
-          >
-            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">No Updates</a>
-        </div>
-
-        <!-- Profile dropdown -->
-        <div class="relative ml-3">
-          <button
-            id="profile-button"
-            class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <span class="sr-only">Open user menu</span>
+          <!-- Logo -->
+          <div class="flex items-center">
             <img
-              class="h-8 w-8 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-              alt=""
+              class="h-8 w-auto"
+              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+              alt="Logo"
             />
-          </button>
+          </div>
 
-          <!-- Dropdown menu -->
-          <div
-            id="profile-menu"
-            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-black/20"
-          >
-            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Your profile</a>
-            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Settings</a>
-            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sign out</a>
+          <!-- Right Side -->
+          <div class="flex items-center gap-4">
+
+            <!-- Notifications -->
+            <button id="notifications-button"
+              class="rounded-full p-1 text-gray-300 hover:text-white focus:outline-none">
+              <img src="upload.png" class="h-6 w-6">
+            </button>
+
+            <div id="notifications-menu"
+              class="hidden absolute right-20 top-16 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
+              <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">No Updates</a>
+            </div>
+
+            <!-- Profile -->
+            <div class="relative">
+              <button id="profile-button"
+                class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <img class="h-8 w-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e">
+              </button>
+
+              <div id="profile-menu"
+                class="hidden absolute right-0 mt-2 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
+                <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Your profile</a>
+                <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Settings</a>
+                <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sign out</a>
+              </div>
+            </div>
+
           </div>
         </div>
-
       </div>
-    </div>
-  </div>
+    </nav>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden sm:hidden px-2 pb-3 pt-2 space-y-1">
-    <a class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white">Dashboard</a>
-    <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Team</a>
-    <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Projects</a>
-    <a class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>
-  </div>
-</nav>
+    <!-- HERO SECTION -->
+    <main class="flex flex-col items-center justify-center text-center px-4 min-h-[80vh]">
 
+      <!-- Badge -->
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 text-indigo-300 text-sm mb-6">
+        AI-Powered Learning
+      </div>
 
-<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-medium text-brand-strong text-sm font-medium mb-6">
-  <Sparkles className="w-4 h-4" />
-  AI-Powered Learning
-</div>
+      <!-- Heading -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+        Transform Documents into
+        <span class="text-indigo-400 block mt-2">Study Flashcards</span>
+      </h1>
 
-<h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-heading">
-  Transform Documents into
-  <span className="text-brand block mt-2">Study Flashcards</span>
-</h1>
+      <!-- Description -->
+      <p class="text-gray-400 max-w-2xl text-base md:text-lg mb-10">
+        Upload any document and let AI create summaries and flashcards instantly.
+        Study smarter, not harder.
+      </p>
 
-<p className="text-base md:text-lg text-body max-w-2xl mx-auto">
-  Upload any document and let AI create a summary and flashcards for you. 
-  Study smarter, not harder.
-</p>
+      <!-- Upload -->
+      <form action="/upload-file" method="POST" enctype="multipart/form-data">
+        <label
+          class="flex flex-col items-center justify-center w-80 sm:w-96 h-44 bg-gray-800 border-2 border-dashed border-gray-600 rounded-lg hover:border-indigo-500 hover:bg-gray-700/50 transition cursor-pointer group">
 
-  
+          <!-- Icon -->
+          <svg class="w-8 h-8 mb-4 text-gray-400 group-hover:text-indigo-400"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5"/>
+          </svg>
 
-<form action="/upload-file" method="POST" enctype="multipart/form-data">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-64">
-    <div class="flex flex-col items-center justify-center w-full h-64 bg-gray-800 border-2 border-dashed border-gray-600 rounded-lg hover:border-indigo-500 hover:bg-gray-700/50 transition-all duration-300 cursor-pointer group">
-      <div class="flex flex-col items-center justify-center text-body pt-5 pb-6">
-        <!-- SVG Icon -->
-        <svg class="w-8 h-8 mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01"/></svg>
-        
-        <p class="mb-2 text-sm text-gray-300">Click the button below to upload</p>
-        
-        <!-- Hidden File Input (Name must match Multer's upload.single('document')) -->
-        <input id="dropzone-file-2" name="document" type="file" class="hidden" onchange="this.form.submit()" />
-        
-        <!-- Trigger Button -->
-        <label for="dropzone-file-2" class="inline-flex items-center text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer">
-          Browse file
+          <p class="text-sm text-gray-300 mb-2">Click to upload</p>
+
+          <span class="text-xs text-gray-500">PDF • Max 10MB</span>
+
+          <input id="file-upload" name="document" type="file"
+            class="hidden" onchange="this.form.submit()" />
         </label>
-      </div>
-    </div>
-  </div>
-</form>
+      </form>
 
+    </main>
 
-    <ul>
+    <!-- RESULT PREVIEW -->
+    <div class="max-w-4xl mx-auto px-4 mb-16">
+      <ul class="text-gray-300 text-sm space-y-2">
         <li><%= locals.fileName || '' %></li>
         <li><%= locals.fileMarkdown || '' %></li>
-    </ul>
+      </ul>
+    </div>
 
-      <footer className="border-t py-6 bg-secondary/30">
-              <div className="container mx-auto px-6 text-center">
-                <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                  <Sparkles className="w-4 h-4 text-accent" />
-                  <span className="text-sm">
-                    Powered by AI — Transform documents into flashcards instantly
-                  </span>
-                </div>
-              </div>
-      </footer>
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-6 text-center text-gray-500 text-sm">
+      Powered by AI — Transform documents into flashcards instantly
+    </footer>
 
-
+    <!-- JAVASCRIPT -->
     <script>
-    
-      const mobileBtn = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-
       const notifyBtn = document.getElementById('notifications-button');
       const notifyMenu = document.getElementById('notifications-menu');
 
       const profileBtn = document.getElementById('profile-button');
       const profileMenu = document.getElementById('profile-menu');
 
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-
+      // Toggle notifications
       notifyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         notifyMenu.classList.toggle('hidden');
       });
 
-      document.addEventListener('click', () => {
-        notifyMenu.classList.add('hidden');
-      });
-
+      // Toggle profile menu
       profileBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         profileMenu.classList.toggle('hidden');
       });
 
+      // Close menus when clicking outside
       document.addEventListener('click', () => {
+        notifyMenu.classList.add('hidden');
         profileMenu.classList.add('hidden');
       });
 
+      // Escape key closes menus
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          mobileMenu.classList.add('hidden');
+          notifyMenu.classList.add('hidden');
           profileMenu.classList.add('hidden');
         }
       });
-
     </script>
-
-    
 
   </body>
 </html>

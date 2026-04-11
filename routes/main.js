@@ -74,25 +74,27 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     const response = await fetch('http://127.0.0.1:8000/file-processing' , {
         method: 'POST',
         // headers : {'Content-Type': 'application/json'},
-        timeout: 300000, // 5 minutes
+        // timeout: 300000, // 5 minutes
         body: formData,
     });
 
     // const txt = await response.text();
     // const data = JSON.parse(txt);
 
-    const orgResponse = await response.json();
+    const result = await response.json();
 
-    const data = orgResponse.fileMarkdown;
+    // const data = orgResponse.fileMarkdown;
 
-    const htmlData = marked.parse(data);
+    // const htmlData = marked.parse(data);
 
-    const chunks = orgResponse.chunks;
+    // const chunks = orgResponse.chunks;
 
-    console.log(data, chunks);
+    // console.log(data, chunks);
 
-    res.render('about', {ok: true, fileMarkdown: htmlData, fileName: orgResponse.fileName, chunks: chunks});
+    // res.render('about', {ok: true, fileMarkdown: htmlData, fileName: orgResponse.fileName, chunks: chunks});
     //    const fileName = String(req.file.filename);
+
+    res.redirect(`/processed?jobId=${result.job_id}&fileName=${result.fileName}`);
 
     await fs.unlink(req.file.path);
 
@@ -108,6 +110,14 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     //    console.log(data);
        //  res.json({message: "Process Started",  data: data})
     // }
+});
+
+router.get('/processed', async function(req, res, next){
+    const jobId = req.query.jobId;
+    const fileName = req.query.fileName;
+
+    res.render('processed.ejs', {job_Id: jobId, fileName: fileName});
+
 });
 
 router.get('/about', function (req, res, next) {
