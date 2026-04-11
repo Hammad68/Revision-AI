@@ -74,6 +74,7 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     const response = await fetch('http://127.0.0.1:8000/file-processing' , {
         method: 'POST',
         // headers : {'Content-Type': 'application/json'},
+        timeout: 300000, // 5 minutes
         body: formData,
     });
 
