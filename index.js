@@ -1,10 +1,13 @@
 // Import express and ejs
 require('dotenv').config()
+// import dotenv from 'dotenv';
+// dotenv.config();
 var session = require('express-session')
 var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2')
+var database = require('postgres');
 
 // Create the express application object
 const app = express()
@@ -37,6 +40,13 @@ const db = mysql.createPool({
     queueLimit: 0,
 });
 global.db = db;
+
+const connectionString = process.env.DATABASE_URL;
+const sql = database(connectionString);
+global.sql = sql;
+
+// Set up marked for markdown parsing
+const { marked } = require('marked');
 
 // Create a session
 app.use(session({

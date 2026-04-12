@@ -112,6 +112,17 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     // }
 });
 
+async function testConnection() {
+    try {
+        await sql`SELECT 1`;
+        console.log('Database connection successful');
+    } catch (error) {
+        console.error('Database connection failed:', error);
+    }
+}
+
+testConnection();
+
 router.get('/processed', async function(req, res, next){
     const jobId = req.query.jobId;
     const fileName = req.query.fileName;
