@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+<title>Revision AI</title>
+<link rel="stylesheet"  type="text/css" href="/main.css" />
+<link href="/css/output.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+<!-- NAVBAR --> 
+<nav class="bg-indigo-500/60 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4">
+    <div class="flex h-16 items-center justify-between">
+
+        <!-- Logo -->
+        <!-- <div class="flex items-center">
+        <img
+            class="h-8 w-auto"
+            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+            alt="Logo"
+        />
+        </div> -->
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-4">
+
+        <!-- Notifications -->
+        <!-- <button id="notifications-button"
+            class="rounded-full p-1 text-gray-300 hover:text-white focus:outline-none">
+            <img src="upload.png" class="h-6 w-6">
+        </button> -->
+
+        <!-- <div id="notifications-menu"
+            class="hidden absolute right-20 top-16 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
+            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">No Updates</a>
+        </div> -->
+
+        <!-- Profile -->
+        <div class="relative">
+            <!-- <button id="profile-button"
+            class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <img class="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e">
+            </button> -->
+
+            <div id="profile-menu"
+            class="hidden absolute right-0 mt-2 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
+            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Your profile</a>
+            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Settings</a>
+            <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">Sign out</a>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    </div>
+</nav>
+<h1>Processed Document</h1>
+<div class="markdown-body">
+    <%- data%>
+</div>
+<h2>Chunks</h2>
+<ul>
+    <% chunks.forEach(function (chunk) { %>
+        <li><%= chunk.text %></li>
+        <li><%= chunk.meta %></li>
+    <% }); %>
+</ul>
+</body>

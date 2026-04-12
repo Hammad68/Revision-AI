@@ -13,35 +13,35 @@
         <div class="flex h-16 items-center justify-between">
 
           <!-- Logo -->
-          <div class="flex items-center">
+          <!-- <div class="flex items-center">
             <img
               class="h-8 w-auto"
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
               alt="Logo"
             />
-          </div>
+          </div> -->
 
           <!-- Right Side -->
           <div class="flex items-center gap-4">
 
             <!-- Notifications -->
-            <button id="notifications-button"
+            <!-- <button id="notifications-button"
               class="rounded-full p-1 text-gray-300 hover:text-white focus:outline-none">
               <img src="upload.png" class="h-6 w-6">
-            </button>
+            </button> -->
 
-            <div id="notifications-menu"
+            <!-- <div id="notifications-menu"
               class="hidden absolute right-20 top-16 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
               <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">No Updates</a>
-            </div>
+            </div> -->
 
             <!-- Profile -->
             <div class="relative">
-              <button id="profile-button"
+              <!-- <button id="profile-button"
                 class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <img class="h-8 w-8 rounded-full"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e">
-              </button>
+              </button> -->
 
               <div id="profile-menu"
                 class="hidden absolute right-0 mt-2 w-48 rounded-md bg-gray-800 py-1 shadow-lg">
@@ -98,19 +98,6 @@
       </form>
 
     </main>
-
-    <!-- RESULT PREVIEW -->
-    <div class="max-w-4xl mx-auto px-4 mb-16">
-      <ul class="text-gray-300 text-sm space-y-2">
-        <li><%= locals.fileName || '' %></li>
-        <li><%= locals.fileMarkdown || '' %></li>
-      </ul>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-white/10 py-6 text-center text-gray-500 text-sm">
-      Powered by AI — Transform documents into flashcards instantly
-    </footer>
 
     <!-- JAVASCRIPT -->
     <script>

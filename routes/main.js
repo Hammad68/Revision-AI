@@ -138,10 +138,17 @@ router.get('/api/status/:id', async function(req, res, next){
 router.get('/results', async function(req, res, next){
     const jobId = req.query.jobId;
 
-    const response = await fetch(`http://127.0.0.1:8000/api/job-status/${jobId}`);
-    const data = await response.json();
+    const response = await fetch(`http://127.0.0.1:8000/job-status/${jobId}`);
+    const data = await response.text();
 
-    res.json(data);
+    const datatxt = JSON.parse(data);
+
+    const fileMarkdown = datatxt.result.fileMarkdown;
+    const htmlData = marked.parse(fileMarkdown);
+
+    const chunks = datatxt.result.chunks;
+
+    res.render('results.ejs', {data: htmlData, chunks: chunks});
 });
 
 router.get('/about', function (req, res, next) {
