@@ -7,11 +7,20 @@ var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2')
+
 var database = require('postgres');
+
+const { createClient } = require('@supabase/supabase-js');
+
+const supabaseURL = process.env.DATABASE_URL_2;
+const supabseServiceKey = process.env.DATABASE_SERVICE_ROLE_KEY;
+
+const supabase = createClient(supabaseURL, supabseServiceKey);
+global.supabase = supabase;
 
 // Create the express application object
 const app = express()
-const port = 8001
+const port = 8005
 const expressSanitizer = require('express-sanitizer');
 
 const apiKey = process.env.DEEPSEEK_API_KEY;

@@ -61,27 +61,35 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     // else{
     //    console.log(req.file.originalname);
 
+    const file = req.file;
+
     const fileBuffer = await fs.readFile(req.file.path);
 
-    const file = new File([fileBuffer], req.file.originalname, {
-        type: req.file.mimetype
-    });
+    const { data: storageData, error: storageError } = await supabase.storage
+        .from('user_files')
+        .upload(file.originalname, fileBuffer, {
+            contentType : req.file.mimetype
+        });
 
-    const formData = new FormData();
+    // const file = new File([fileBuffer], req.file.originalname, {
+    //     type: req.file.mimetype
+    // });
 
-    formData.append('file', file);
+    // const formData = new FormData();
+
+    // formData.append('file', file);
        
-    const response = await fetch('http://127.0.0.1:8000/file-processing' , {
-        method: 'POST',
-        // headers : {'Content-Type': 'application/json'},
-        // timeout: 300000, // 5 minutes
-        body: formData,
-    });
+    // const response = await fetch('http://127.0.0.1:8000/file-processing' , {
+    //     method: 'POST',
+    //     // headers : {'Content-Type': 'application/json'},
+    //     // timeout: 300000, // 5 minutes
+    //     body: formData,
+    // });
 
-    // const txt = await response.text();
-    // const data = JSON.parse(txt);
+    // // const txt = await response.text();
+    // // const data = JSON.parse(txt);
 
-    const result = await response.json();
+    // const result = await response.json();
 
     // const data = orgResponse.fileMarkdown;
 
@@ -94,9 +102,9 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     // res.render('about', {ok: true, fileMarkdown: htmlData, fileName: orgResponse.fileName, chunks: chunks});
     //    const fileName = String(req.file.filename);
 
-    res.redirect(`/processed?jobId=${result.job_id}&fileName=${result.fileName}`);
+    // res.redirect(`/processed?jobId=${result.job_id}&fileName=${result.fileName}`);
 
-    await fs.unlink(req.file.path);
+    // await fs.unlink(req.file.path);
 
     // res.json({message: "File Processed", data: data});
 
@@ -110,18 +118,20 @@ router.post('/upload-file', upload.single("document"), async function(req, res, 
     //    console.log(data);
        //  res.json({message: "Process Started",  data: data})
     // }
+
+    res.send("File Uploaded Successfully");
 });
 
-async function testConnection() {
-    try {
-        await sql`SELECT 1`;
-        console.log('Database connection successful');
-    } catch (error) {
-        console.error('Database connection failed:', error);
-    }
-}
+// async function testConnection() {
+//     try {
+//         await sql`SELECT 1`;
+//         console.log('Database connection successful');
+//     } catch (error) {
+//         console.error('Database connection failed:', error);
+//     }
+// }
 
-testConnection();
+// testConnection();
 
 router.get('/processed', async function(req, res, next){
     const jobId = req.query.jobId;
